@@ -2,6 +2,7 @@ import mysql from 'mysql';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import authentification from './router/user-auth.js';
 
 export const db = mysql.createConnection({
     host: "localhost",
@@ -14,7 +15,6 @@ db.connect(function (err) {
     if (err) {
         return console.error('error: ' + err.message);
     }
-
     console.log('MySQL connecté');
 });
 
@@ -28,6 +28,8 @@ export function CreateBackend(port) {
         res.set('Access-Control-Allow-Origin', 'http://localhost:3000');
         res.send({ "msg": "This has CORS enabled 🎈" })
     })
+
+    app.use("/auth", authentification)
 
     app.listen(port, () => {
         console.log("Backend is connected at port : " + port)
