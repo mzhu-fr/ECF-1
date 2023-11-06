@@ -1,0 +1,57 @@
+{
+    "acc_name":"user1",
+    "email":"test1@test.com",
+    "name":"test",
+    "fam_name":"test",
+    "avatar":"11",
+    "password":"123456"
+}
+
+{
+    "name":"Sheila",
+    "fam_name":"Clinton",
+    "birth":"10/10/2000",
+    "adress":"None of your business",
+    "zipcode":"985A235",
+    "phone":"+11111111",
+    "social_security":"12378965478",
+    "gender":"F",
+    "picture":"nopic",
+    "updated":"Tonight",
+    "pay":"1879.60",
+    "grade":"regular",
+    "email":"test@test.com",
+    "password":"123456"
+}
+
+{
+    "name": "chou",
+    "brand": "fleur",
+    "model": "machin",
+    "year": "1587",
+    "price": "11235874",
+    "description": "vraiment très beau jaune",
+    "secondhand": "no",
+    "km": "3264897",
+    "co2": "0.3654",
+    "fuel": "diesel",
+    "transmission": "manual",
+    "type": "berline",
+    "color": "red",
+    "nb_places": "3",
+    "DIN_power": "80"
+}
+
+{
+    "name": "chou",
+    "brand": "fleur",
+    "model": "machin",
+    "year": "1587",
+    "price": "11235874",
+    "description": "vraiment très beau jaune",
+    "secondhand": "no",
+    "km": "3264897",
+    "co2": "0.3654",
+    "fuel": "diesel",
+    "transmission": "manual"
+}

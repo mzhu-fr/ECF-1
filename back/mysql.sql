@@ -1,4 +1,5 @@
 CREATE SCHEMA `garage`;
+
 CREATE TABLE `garage`.`cars` (
   `idcars` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
@@ -17,6 +18,7 @@ CREATE TABLE `garage`.`cars` (
   `nb_places` VARCHAR(45) NULL,
   `DIN_power` INT NULL DEFAULT 0,
   PRIMARY KEY (`idcars`));
+
 CREATE TABLE `garage`.`employee` (
   `idemployee` INT NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(45) NULL DEFAULT 'employee',
@@ -35,3 +37,64 @@ CREATE TABLE `garage`.`employee` (
   `pay` FLOAT NULL DEFAULT 1747.20,
   `grade` VARCHAR(45) NULL DEFAULT 'regular',
   PRIMARY KEY (`idemployee`));
+
+CREATE TABLE `garage`.`user` (
+  `iduser` INT NOT NULL AUTO_INCREMENT,
+  `acc_name` VARCHAR(100) NULL,
+  `email` VARCHAR(45) NULL,
+  `password` VARCHAR(255) NULL,
+  `name` VARCHAR(45) NULL,
+  `fam_name` VARCHAR(45) NULL,
+  `avatar` VARCHAR(45) NULL,
+  PRIMARY KEY (`iduser`));
+
+CREATE TABLE `garage`.`reviews` (
+  `iduser` INT NOT NULL,
+  `idcars` INT NOT NULL,
+  `review` VARCHAR(2000) NULL,
+  `note` INT NULL,
+  PRIMARY KEY (`iduser`, `idcars`),
+  INDEX `idcars_idx` (`idcars` ASC) VISIBLE,
+  CONSTRAINT `idcars`
+    FOREIGN KEY (`idcars`)
+    REFERENCES `garage`.`cars` (`idcars`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `iduser`
+    FOREIGN KEY (`iduser`)
+    REFERENCES `garage`.`user` (`iduser`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+ALTER TABLE `garage`.`reviews` 
+DROP FOREIGN KEY `iduser`;
+ALTER TABLE `garage`.`reviews` 
+ADD CONSTRAINT `iduser`
+  FOREIGN KEY (`iduser`)
+  REFERENCES `garage`.`user` (`iduser`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `garage`.`reviews` 
+DROP FOREIGN KEY `idcars`;
+ALTER TABLE `garage`.`reviews` 
+ADD CONSTRAINT `idcars`
+  FOREIGN KEY (`idcars`)
+  REFERENCES `garage`.`cars` (`idcars`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
+
+ALTER TABLE `garage`.`employee` 
+ADD COLUMN `email` VARCHAR(45) NULL AFTER `grade`,
+ADD COLUMN `password` VARCHAR(255) NULL AFTER `email`;
+
+ALTER TABLE `garage`.`employee` 
+CHANGE COLUMN `role` `role` VARCHAR(10) NULL DEFAULT 'employee' ,
+CHANGE COLUMN `adress` `adress` VARCHAR(500) NULL DEFAULT NULL ,
+CHANGE COLUMN `zipcode` `zipcode` VARCHAR(10) NULL DEFAULT NULL ,
+CHANGE COLUMN `gender` `gender` VARCHAR(2) NULL DEFAULT NULL ,
+CHANGE COLUMN `picture` `picture` VARCHAR(200) NULL DEFAULT NULL ,
+CHANGE COLUMN `status` `status` VARCHAR(100) NULL DEFAULT 'employed' ,
+CHANGE COLUMN `grade` `grade` VARCHAR(10) NULL DEFAULT 'regular' ,
+CHANGE COLUMN `email` `email` VARCHAR(80) NULL DEFAULT NULL ;
+CHANGE COLUMN `created` `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP;
