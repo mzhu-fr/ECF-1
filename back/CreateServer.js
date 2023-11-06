@@ -5,7 +5,8 @@ import cookieParser from 'cookie-parser';
 import authentification from './routes/user-auth.js';
 import userCRUD from './routes/user-CRUD.js';
 import carsCRUD from './routes/cars-CRUD.js';
-import employeeCRUD from './routes/employee-CRUD.js'
+import employeeCRUD from './routes/employee-CRUD.js';
+import reviewsCRUD from './routes/reviews-CRUD.js'
 
 export const db = mysql.createConnection({
     host: "localhost",
@@ -36,6 +37,7 @@ export function CreateBackend(port) {
     app.use("/users", userCRUD);
     app.use("/cars", carsCRUD);
     app.use("/employee", employeeCRUD);
+    app.use("/reviews", reviewsCRUD)
 
     app.listen(port, () => {
         console.log("Backend is connected at port : " + port)
