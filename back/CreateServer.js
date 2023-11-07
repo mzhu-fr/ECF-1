@@ -1,4 +1,4 @@
-import mysql from 'mysql';
+import mysql from 'mysql2';
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
@@ -7,19 +7,22 @@ import userCRUD from './routes/user-CRUD.js';
 import carsCRUD from './routes/cars-CRUD.js';
 import employeeCRUD from './routes/employee-CRUD.js';
 import reviewsCRUD from './routes/reviews-CRUD.js'
+import { config } from 'dotenv';
+
+config();
 
 export const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "garage"
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE
 });
 
 db.connect(function (err) {
     if (err) {
         return console.error('error: ' + err.message);
     };
-    console.log('MySQL connecté');
+    console.log('database connected');
 });
 
 export function CreateBackend(port) {
@@ -40,6 +43,6 @@ export function CreateBackend(port) {
     app.use("/reviews", reviewsCRUD)
 
     app.listen(port, () => {
-        console.log("Backend is connected at port : " + port)
+        console.log("backend is listening at port : " + port)
     });
 }
