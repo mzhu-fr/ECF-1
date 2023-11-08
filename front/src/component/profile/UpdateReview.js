@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { AuthContext } from '../../context/AuthentificationContext'
 
 export const UpdateReview = () => {
@@ -79,32 +79,37 @@ export const UpdateReview = () => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    return (
-        <div>
-            <div className="register-form">
-                <h1>Modify your review</h1>
-                <div className="form-section">
-                    <label>Review :</label>
-                    <input defaultValue={getReviewData.review} placeholder="review" name="review" type="text" onChange={handleChange} />
+    if (currentUser) {
+        return (
+            <div>
+                <div className="register-form">
+                    <h1>Modify your review</h1>
+                    <div className="form-section">
+                        <label>Review :</label>
+                        <input defaultValue={getReviewData.review} placeholder="review" name="review" type="text" onChange={handleChange} />
+                    </div>
+                    <div className="form-section">
+                        <label>Note (Previous note :  {getReviewData.note}/ 10) :</label>
+                        <select defaultValue={getReviewData.note} name="note" onChange={handleChange}>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                        </select>
+                    </div>
+                    <button className="update-button" onClick={handleUpdate}>Update</button>
                 </div>
-                <div className="form-section">
-                    <label>Note (Previous note :  {getReviewData.note}/ 10) :</label>
-                    <select defaultValue={getReviewData.note} name="note" onChange={handleChange}>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                </div>
-                <button className="update-button" onClick={handleUpdate}>Update</button>
             </div>
-        </div>
-    )
+        )
+    }
+    else {
+        return <Navigate to="/" />
+    }
 }

@@ -1,0 +1,89 @@
+.admin {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.employee-CRUD,
+.user-CRUD,
+.product-CRUD {
+    display: flex;
+
+    flex-direction: column;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.employee-read-delete {
+    display: flex;
+
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.display-section {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+}
+
+.employee-display-unique {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 15px;
+
+    box-shadow: 5px 2px 2px var(--100-green);
+    width: 100vw;
+}
+
+.user-display-unique {
+    width: 250px;
+    height: auto;
+    box-shadow: 5px 2px 2px var(--white);
+}
+
+.employee-display-unique div {
+    width: 100%;
+}
+
+.employee-read-delete p {
+    font-weight: bold;
+    color: var(--66-green)
+}
+
+.admin-div-button {
+    display: flex;
+
+    justify-content: center;
+    text-align: center;
+
+    font-size: 1.5em;
+
+    background-color: var(--33-green);
+}
+
+.user-employee-button {
+    width: 100%;
+}
+
+.active {
+    background-color: var(--66-green);
+}
+
+@media (max-width: 1200px) {
+    .employee-display-unique {
+        flex-wrap: wrap;
+    }
+}

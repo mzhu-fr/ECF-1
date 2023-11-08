@@ -27,7 +27,7 @@
 {
     "name": "chou",
     "brand": "fleur",
-    "model": "machin",
+    "model": "https://image-annonce.lacentrale.fr/352x264/E112999490_STANDARD_0.jpg?version=1696838450",
     "year": "1587",
     "price": "11235874",
     "description": "vraiment très beau jaune",

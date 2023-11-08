@@ -5,7 +5,12 @@ import { LoginRegister } from "./component/connexion/Login-Register";
 import { AdminLogin } from "./component/connexion/AdminLogin";
 import { Profil } from "./component/profile/Profil";
 import { UpdateReview } from "./component/profile/UpdateReview";
-import { AboutUs } from "./component/about/about";
+import { AboutUs } from "./component/about/About";
+import { Admin } from "./component/admin/Admin";
+import { EmployeeUpdate, ProductUpdate, UserUpdate } from "./component/admin/Update-CRUD";
+import { Home } from "./component/home/Home";
+import { Car } from "./component/home/Car";
+import { Footer } from "./component/footer/Footer";
 
 function App() {
   return (
@@ -16,18 +21,20 @@ function App() {
       <Sidebar />
 
       <Routes>
-        <Route path="/" />
+        <Route path="/" element={<Home />} />
+        <Route path="/cars/:id" element={<Car />} />
         <Route path="/register-login" element={<LoginRegister />} />
         <Route path="/admin-login" element={<AdminLogin />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/profile" element={<Profil />} />
-        <Route path="/admin">
-          <Route path="/admin/create" />
-        </Route>
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/admin/employee-update/:id" element={<EmployeeUpdate />} />
+        <Route path="/admin/user-update/:id" element={< UserUpdate />} />
+        <Route path="/admin/products-update/:id" element={<ProductUpdate />} />
         <Route path="/user-review/:id" element={<UpdateReview />} />
       </Routes>
 
-      {/* FOOTER */}
+      <Footer />
 
     </BrowserRouter>
   );

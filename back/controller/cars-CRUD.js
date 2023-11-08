@@ -4,7 +4,7 @@ export const getCars = (req, res) => {
     const query = "SELECT * FROM `garage`.`cars`";
     db.query(query, (err, data) => {
         if (err) return res.status(400).json(err);
-        return res.status(400).json(data);
+        return res.status(200).json(data);
     });
 };
 
@@ -13,7 +13,7 @@ export const getCar = (req, res) => {
     const id = req.params.id;
     db.query(query, id, (err, data) => {
         if (err) return res.status(400).json(err);
-        return res.status(400).json(data[0]);
+        return res.status(200).json(data[0]);
     });
 };
 
@@ -22,7 +22,7 @@ export const deleteCar = (req, res) => {
     const id = req.params.id;
     db.query(query, id, (err, data) => {
         if (err) return res.status(400).json(err);
-        return res.status(400).json("Car deleted.");
+        return res.status(200).json("Car deleted.");
     });
 };
 
@@ -47,7 +47,7 @@ export const updateCar = (req, res) => {
     const query = "UPDATE `garage`.`cars` SET `name` = ?, `brand` = ?, `model` = ?, `year` = ?, `price` = ?, `description` = ?, `secondhand` = ?, `km` = ?, `co2` = ?, `fuel` = ?, `transmission` = ? WHERE idcars = ?"
     db.query(query, [...values], (err, data) => {
         if (err) return res.status(400).json(err);
-        return res.status(400).json("Car updated.");
+        return res.status(200).json("Car updated.");
     })
 };
 

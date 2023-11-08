@@ -9,6 +9,6 @@ router.put("/admin/:id", updateToAdmin)
 router.put("/update-pwd/:id", updatePasswordOnly)
 router.get("/admin", displayForAdmin)
 router.get("/colleague", displayForEmployee)
-router.get("/", displayEmployee)
+router.get("/me/:id", displayEmployee)
 
 export default router;

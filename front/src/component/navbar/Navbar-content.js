@@ -30,7 +30,7 @@ export const NavbarContent = () => {
             <Link to="/" onClick={() => handleClick()}>Home</Link>
             {currentUser ? "" : <Link to="/register-login" onClick={() => handleClick()}>Register/Login</Link>}
             {currentUser ? <Link to="/profile" onClick={() => handleClick()}>Profile</Link> : ""}
-            {currentUser && currentUser.picture && (currentUser.status === "employed") ? <Link to="/" onClick={() => handleClick()}>Admin</Link> : ""}
+            {currentUser && currentUser.picture && (currentUser.status === "employed") ? <Link to="/admin" onClick={() => handleClick()}>Admin</Link> : ""}
 
             {currentUser ? <Link to="/" onClick={() => handleLogout()}>Logout</Link> : ""}
             <Link to="/about-us" onClick={() => handleClick()}>About Us</Link>
