@@ -1,15 +1,38 @@
+// IMPORT FILES
+import './navbar.css';
+import { AuthContext } from '../../context/AuthentificationContext.js'
+
+// IMPORT MODULES
+import { useContext } from "react";
 import { Link } from "react-router-dom"
+import { useDispatch } from 'react-redux';
+import { hideSidebar } from '../../redux-store/actions/sidebar-action.js';
 
 export const NavbarContent = () => {
+    const { currentUser, logout } = useContext(AuthContext)
+    const dispatch = useDispatch();
+
+    const handleClick = () => {
+        console.log("close sidebard after click on menu")
+        dispatch(hideSidebar())
+    }
+    const handleLogout = async () => {
+        try {
+            await logout();
+            handleClick();
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
     return (
-        <div>
-            <Link to="/">Home</Link>
-            <Link to="/">About Us</Link>
-            <Link to="/">Login/Register</Link>
-            <Link to="/">Admin</Link>
-            <Link to="/">Profile</Link>
-            <Link to="/">Create new items</Link>
-            <Link to="/">Logout</Link>
+        <div className="navbar-content-links">
+            <Link to="/" onClick={() => handleClick()}>Home</Link>
+            {currentUser ? "" : <Link to="/register-login" onClick={() => handleClick()}>Register/Login</Link>}
+            {currentUser ? <Link to="/profile" onClick={() => handleClick()}>Profile</Link> : ""}
+            {currentUser ? <Link to="/" onClick={() => handleLogout()}>Logout</Link> : ""}
+            {currentUser && (currentUser.grade === "admin" || currentUser.grade === "employee") ? <Link to="/" onClick={() => handleClick()}>Admin</Link> : ""}
+            <Link to="/about-us" onClick={() => handleClick()}>About Us</Link>
         </div>
     )
 }

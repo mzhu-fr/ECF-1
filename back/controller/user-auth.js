@@ -10,7 +10,7 @@ export const register = (req, res) => {
     db.query(check, req.body.email, (err, data) => {
         if (err) return (res.status(400).json(err))
         if (data.length) {
-            return res.status(200).json("Email already in use. Try another one.")
+            return res.status(400).json("Email already in use. Try another one.")
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
@@ -33,11 +33,14 @@ export const register = (req, res) => {
 
 export const login = (req, res) => {
     const query = "SELECT * FROM `garage`.`user` WHERE email = ?"
-    db.query(query, req.body.email, (err, data) => {
-        if (err) return (res.status(400).json(err))
-        if (data.length === 0) return res.status(200).json("Unkwown user.")
+    db.query(query, [req.body.email], (err, data) => {
+
+        if (err) return (res.status(400).json(err));
+        if (data.length === 0) return res.status(400).json("Unkwown user, please register.");
+
+        // COMPARE PASSWORD
         const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password);
-        if (!isPasswordCorrect) return res.status(406).json("Wrong email or password, please retry.");
+        if (!isPasswordCorrect) return res.status(400).json("Wrong email or password, please retry.");
 
         const { password, ...other } = data[0]
         const token = jwt.sign({ id: data[0].iduser }, "jwtkey");
@@ -51,9 +54,9 @@ export const adminConnect = (req, res) => {
     const query = "SELECT * FROM `garage`.`employee` WHERE email = ?"
     db.query(query, req.body.email, (err, data) => {
         if (err) return res.status(400).json(err)
-        if (data.length === 0) return res.status(200).json("Unknown user.")
+        if (data.length === 0) return res.status(400).json("Unknown user.")
         const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password);
-        if (!isPasswordCorrect) return res.status(406).json("Wrong email or password, please retry.");
+        if (!isPasswordCorrect) return res.status(400).json("Wrong email or password, please retry.");
 
         const { password, ...other } = data[0]
         const token = jwt.sign({ id: data[0].iduser }, "jwtkey");
