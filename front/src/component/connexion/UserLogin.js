@@ -2,11 +2,13 @@ import React, { useContext, useState } from 'react';
 
 import './connexion.css';
 import { AuthContext } from '../../context/AuthentificationContext';
+import { useNavigate } from 'react-router-dom';
 
 
 export const UserLogin = () => {
 
     const { userLogin } = useContext(AuthContext)
+    const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({
         email: "",
@@ -24,6 +26,7 @@ export const UserLogin = () => {
         e.preventDefault();
         try {
             await userLogin(inputs);
+            navigate('/profile')
         }
         catch (err) {
             console.log(err.response.data);
@@ -34,7 +37,7 @@ export const UserLogin = () => {
         <div className="user-login login">
             <h1>Login</h1>
             <div className="user-login form">
-                {message && <p> {message} </p>}
+                {message && <p className="message-update">{message} </p>}
                 <div className="login-form">
                     <div className="form-section">
                         <label>Email :</label>

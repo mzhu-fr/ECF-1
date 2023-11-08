@@ -1,0 +1,95 @@
+.profile-page {
+    width: 100vw;
+    height: 100vh;
+}
+
+.username {
+    font-size: 3em;
+}
+
+.acc_name {
+    color: var(--100-green);
+    font-weight: bold;
+}
+
+.user-avatar img {
+    width: 250px;
+    height: auto;
+}
+
+.user-avatar {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.user-change-buttons {
+    display: flex;
+
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    gap: 5px
+}
+
+.modify-info {
+    background-color: var(--00-green);
+}
+
+.modify-password {
+    background-color: var(--33-green);
+}
+
+.unique-review {
+    box-shadow: 5px 2px 2px var(--white);
+    width: 250px;
+    height: auto;
+}
+
+.user-reviews,
+.user-name,
+.colleague-unique {
+    gap: 5px;
+}
+
+.trombinoscope-title {
+    font-size: 1.5em;
+}
+
+.colleague-trombinoscope,
+.trombinoscope-arrow-function,
+.colleague-unique,
+.review-section,
+.user-reviews,
+.user-name,
+.unique-review {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.colleague-unique {
+    box-shadow: 5px 2px 2px var(--white);
+
+    width: 250px;
+    flex-direction: column;
+}
+
+.trombinoscope-arrow-function {
+    flex-direction: column;
+}
+
+.colleague-unique img {
+    width: 100px;
+    height: auto;
+}
+
+@media (max-width: 1200px) {
+    .username {
+        font-size: 2em;
+    }
+}

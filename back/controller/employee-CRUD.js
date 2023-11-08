@@ -71,7 +71,7 @@ export const displayForAdmin = (req, res) => {
 };
 
 export const displayForEmployee = (req, res) => {
-    const query = "SELECT name, fam_name, phone, picture FROM `garage`.`employee` WHERE `grade` <> 'admin' AND `status` = 'employed'"
+    const query = "SELECT name, fam_name, phone, picture, gender FROM `garage`.`employee` WHERE `grade` <> 'admin' AND `status` = 'employed'"
     db.query(query, (err, data) => {
         if (err) return res.status(400).json(err);
         return res.status(200).json(data);
@@ -86,3 +86,14 @@ export const displayEmployee = (req, res) => {
         return res.status(200).json(data);
     })
 };
+
+export const updatePasswordOnly = (req, res) => {
+    const id = req.params.id;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+    const query = "UPDATE `garage`.`employee` SET `password` = ? WHERE idemployee= ?"
+    db.query(query, [hash, id], (err, data) => {
+        if (err) return res.status(400).json(err);
+        return res.status(200).json("Password updated");
+    })
+}

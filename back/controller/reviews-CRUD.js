@@ -11,7 +11,7 @@ export const getCarReview = (req, res) => {
 
 export const getUserReviews = (req, res) => {
     const id = req.params.id;
-    const query = "SELECT review, note, `cars`.name FROM `garage`.`reviews`LEFT JOIN `garage`.`cars` ON `garage`.`cars`.idcars = `garage`.`reviews`.idcars WHERE iduser = ? ";
+    const query = "SELECT review as comment, note, `garage`.`cars`.name, `garage`.`cars`.idcars FROM `garage`.`reviews`LEFT JOIN `garage`.`cars` ON `garage`.`cars`.idcars = `garage`.`reviews`.idcars WHERE iduser = ? ";
     db.query(query, id, (err, data) => {
         if (err) return res.status(400).json(err);
         return res.status(200).json(data);
@@ -53,5 +53,13 @@ export const userDeleteReview = (req, res) => {
     db.query(query, [req.body.idcars, req.body.iduser], (err, data) => {
         if (err) return res.status(400).json(err);
         return res.status(200).json("Review successfully deleted !");
+    })
+}
+
+export const getUserCarReview = (req, res) => {
+    const query = "SELECT * FROM `garage`.`reviews` WHERE iduser = ? AND idcars = ?"
+    db.query(query, [req.params.iduser, req.params.idcars], (err, data) => {
+        if (err) return res.status(400).json(err);
+        return res.status(200).json(data);
     })
 }

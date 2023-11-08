@@ -41,3 +41,26 @@ code {
     --red: #841818;
     --black: #000000;
 }
+
+.update-button {
+    background-color: var(--gold);
+}
+
+.delete-button {
+    background-color: var(--red);
+}
+
+.update-delete-button {
+    display: flex;
+    gap: 5px;
+}
+
+.update-button,
+.delete-button {
+    color: var(--white);
+    border-radius: 5px;
+}
+
+button {
+    padding: 0.5em;
+}

@@ -1,0 +1,20 @@
+.about-section {
+    display: flex;
+    flex-direction: column;
+
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.about-banner {
+    width: 100vw;
+    height: 50vh;
+
+    background-image: url('https://i.pinimg.com/736x/0e/50/c2/0e50c2395ce120082508aa6ac80ef16b.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.copyrights-banner {
+    font-size: 0.3em;
+}

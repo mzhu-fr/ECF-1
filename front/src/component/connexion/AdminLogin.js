@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../../context/AuthentificationContext'
-import { Link, Navigate } from 'react-router-dom'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 export const AdminLogin = () => {
     const { adminLogin, currentUser } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const [inputs, setInputs] = useState({
         email: "",
@@ -21,6 +22,7 @@ export const AdminLogin = () => {
         e.preventDefault();
         try {
             await adminLogin(inputs);
+            navigate('/profile')
         }
         catch (err) {
             console.log(err);
