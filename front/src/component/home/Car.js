@@ -8,9 +8,11 @@ export const Car = () => {
     const [carReview, setCarReview] = useState({})
 
     const { currentUser } = useContext(AuthContext)
+    const [userId, setUserId] = useState("0")
+
 
     const [review, setReview] = useState({
-        iduser: currentUser.iduser
+        iduser: userId
     })
 
     const [message, setMessage] = useState()
@@ -71,7 +73,7 @@ export const Car = () => {
                 setMessage("Review added! ")
             }
             else {
-                setMessage("Couldn't add a review ! ")
+                setMessage(res.ok)
             }
         }
 
@@ -104,7 +106,7 @@ export const Car = () => {
                     {message && <p>{message}</p>}
                     <label>Leave a comment :</label>
                     <input name="review" placeholder="Write your review" onChange={handleChange} />
-                    <select name="note" value="5" onChange={handleChange}>
+                    <select name="note" onChange={handleChange}>
                         <option name="note" value="0">0</option>
                         <option name="note" value="1">1</option>
                         <option name="note" value="2">2</option>

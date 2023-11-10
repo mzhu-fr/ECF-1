@@ -3,7 +3,6 @@ import './admin.css'
 import { EmployeeCREATE, EmployeeRD } from './Employee-CRUD'
 import { AuthContext } from '../../context/AuthentificationContext'
 import { Navigate } from 'react-router-dom'
-import { EmployeeUpdate } from './Update-CRUD'
 import { UserCreate, UserRD } from './User-CRUD'
 import { ProductCreate, ProductRD } from './Product-CRUD'
 
